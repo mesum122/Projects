@@ -1,6 +1,3 @@
-"""Account creation: Name, account number, initial deposit amount"""
-
-
 def create_account(name, number, initial_balance):
     return {'account_number': number,
             "account_name": name,
@@ -8,16 +5,9 @@ def create_account(name, number, initial_balance):
             "transaction_history": []
             }
 
-
-"""deposit money in account and update balance"""
-
-
 def deposit(account, amount):
     account["balance"] = account["balance"] + amount
     account["transaction_history"].append(f"you deposited ${amount}")
-
-
-"""Implement a method withdraw money , if sufficient funds. also update balance """
 
 
 def withdrawal(account, amount):
