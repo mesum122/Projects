@@ -1,0 +1,66 @@
+"""manage student records"""
+
+"""new student record by providing name, ID, and  initial list of grades"""
+
+
+def create_record(name, ID, initial_grades):
+    return {
+        'student_name': name,
+        'student id': ID,
+        'grades': initial_grades.split(","),
+        'average': [],
+        'history': []
+    }
+
+
+def add_grades(record, new_grades):
+    record['grades'].append(new_grades)
+    record['history'].append(f"added {new_grades} grade because you took more exams")
+
+
+def remove_grades(record, remove_grades):
+    record['grades'].remove(remove_grades)
+    print(record['grades'])
+    record['history'].append(f"removed {remove_grades} grade because you are giving again")
+
+
+def update_grades(record, old_grades, new_grades):
+    index = record['grades'].index(old_grades)
+    record['grades'][index] = new_grades
+    record['history'].append(f"replaced {old_grades} with {new_grades} grade because you improved grade")
+
+
+def calculate_grade(record):
+    marks = 0
+    for grade in record['grades']:
+        if grade == 'A':
+            marks += 80
+        elif grade == 'B':
+            marks += 70
+        elif grade == 'C':
+            marks += 60
+        elif grade == 'D':
+            marks += 50
+    percent = marks / len((record['grades']))
+    record["average"].append(round(percent, 2))
+    print(f"your average grade is {percent:.2f}%")
+
+
+def history(record):
+    print("Your grade modifications are =", record['history'])
+
+
+def report(record):
+    print("Student name =", record['student_name'])
+    print("Student ID =", record['student id'])
+    print("Current grades =", record['grades'])
+    print("Your average grade is", record['average'])
+
+
+record = create_record("mesum", "123", "A,B")
+add_grades(record, "B")
+remove_grades(record, "A")
+update_grades(record, 'B', "C")
+calculate_grade(record)
+report(record)
+history(record)
